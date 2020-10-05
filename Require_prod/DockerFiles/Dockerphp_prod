@@ -1,0 +1,11 @@
+FROM php:7.4.7-apache
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+COPY 000-default.conf /etc/apache2/sites-available/
+COPY php.ini-development /usr/local/etc/php/
+COPY databasephp.tar /var/www/html
+RUN tar -xvf /var/www/html/databasephp.tar && \
+mv /var/www/html/databasephp/* /var/www/html/ && \
+rm /var/www/html/databasephp.tar
+EXPOSE 80
+CMD /usr/sbin/apache2ctl -D FOREGROUND
+

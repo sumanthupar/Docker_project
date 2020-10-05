@@ -1,0 +1,8 @@
+FROM mysql:8.0.1
+ENV MYSQL_USERNAME root
+ENV MYSQL_ROOT_PASSWORD mypass123
+RUN sed -i 's/.*secure-file-priv.*/secure-file-priv=""/' /etc/mysql/my.cnf
+ENTRYPOINT ["docker-entrypoint.sh"]
+EXPOSE 3306 33060
+CMD ["mysqld"]
+

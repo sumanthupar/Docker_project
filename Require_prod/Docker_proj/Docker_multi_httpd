@@ -1,0 +1,8 @@
+##multi stage
+FROM centos:centos7 AS builder
+RUN yum update -y && yum install httpd -y
+WORKDIR /var/www/html/
+COPY index.html new.html ./
+
+FROM centos:centos7
+COPY --from=builder /var/www/html/index.html /var/www/html/new.html /var/www/html/
