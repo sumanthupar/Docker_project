@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  web:
+    image: httpd:latest
+    container_name: myht1
+    ports:
+      - 80:80
+    volumes:
+      - newvol:/usr/local/apache2/htdocs
+    networks:
+      - sumnet
+
+volumes:
+  newvol:
+    name: newvol
+
+networks:
+  sumnet:

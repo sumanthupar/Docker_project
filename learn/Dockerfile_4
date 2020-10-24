@@ -1,0 +1,7 @@
+####Httpd image with script
+ARG VERSION=centos7
+FROM centos:$VERSION
+WORKDIR /var
+#ADD testdir.tar /var/
+COPY testdir.tar .
+RUN tar -xvf testdir.tar && rm -f testdir.tar

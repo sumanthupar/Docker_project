@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  webht:
+    image: httpd:latest
+    ports:
+      - "80-85:80"
+    volumes:
+      - sumvol1:/usr/local/apache2/htdocs
+    networks:
+      - sumbridge
+volumes:
+  sumvol1:
+networks:
+  sumbridge:
+  

@@ -1,0 +1,10 @@
+####Httpd image with script
+ARG VERSION=centos7
+FROM centos:$VERSION
+RUN yum -y update && yum -y install httpd
+WORKDIR /var
+COPY testdir.tar .
+RUN tar -xvf testdir.tar 
+EXPOSE 80
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+
