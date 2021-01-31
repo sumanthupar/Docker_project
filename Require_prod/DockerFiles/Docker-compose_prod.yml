@@ -8,6 +8,8 @@ services:
     depends_on:
       - db
       - phpmyadmin
+    volumes:
+      - phpvol:/var/www/html
     networks:
       - sumbridge
 
@@ -26,10 +28,14 @@ services:
     container_name: mysqlnew1
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - /root/mysql_data:/var/lib/mysql
+      - /opt/mysql_data:/var/lib/mysql
     networks:
       - sumbridge
     
 networks:
   sumbridge:
+    external: true
+
+volumes:
+  phpvol:
     external: true

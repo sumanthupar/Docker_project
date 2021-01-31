@@ -1,0 +1,62 @@
+
+doccker project for monitoring tool
+----------------------------------------
+
+git clone docker project
+cd /root/Docker_project/Require_prod
+create php image and mysql image with image name as php_prod and mysql_prod
+create directories phpvol(this is docker volume) and /opt/mysql_data(or replace it with nfs path and in docker compose file)
+create sumbridge network
+
+start the conatiners
+go to phpmyadmin page and create database server and create tables finalserver(11 columns), finalserverback1(11 columns), zonedetails1(7 columns), zonedetailsback1(7 columns)
+	Table details:
+finalserver
+-----------------
+	Servername	text
+	zonenames	text
+	TotalRAM	text
+	FreeRAM	text
+	RpoolSpace	text
+	DpoolSpace	text
+	FreeRAMper	text
+	ZonesAvailable	text
+	ZonesAccom	text
+	BEname	text
+	datatime	datetime
+finalserverback1
+-----------------
+Same as finalserver
+
+zonedetails1
+--------------
+	id Primary	int(11)			No	None		AUTO_INCREMENT  (before this was not there..now included to make it same)
+	zonename	text
+	zonehost	text
+	usedram	float
+	zoneowner	text
+	zoneimage	text
+	zoneip	varchar(15)
+	
+zonedetailsback1
+-----------------
+	id Primary	int(11)			No	None		AUTO_INCREMENT
+	zonename	text
+	zonehost	text
+	usedram	float
+	zoneowner	text
+	zoneimage	text
+	zoneip	varchar(15)	
+	
+diskstat
+-------------
+Servername	text
+Diskname	text
+Details	text
+Health	text
+
+make sure Zonedetails2.csv contains NULL in first column of each line
+
+copy the Serverdetails2.csv,Zonedetails2.csv and diskstat.csv to mysql bind path
+then run loadcsv_scr.sh
+
